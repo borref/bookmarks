@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/**/*'
+Documentation:
+  Enabled: false

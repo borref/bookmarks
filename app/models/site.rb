@@ -5,6 +5,6 @@ class Site < ApplicationRecord
   validates :url, presence: true, uniqueness: true
 
   def bookmarks
-    Bookmark.where(site_id: self.id)
+    Bookmark.where(site_id: id)
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Bookmark, type: :model do
   context 'validation and creation' do
@@ -49,6 +49,20 @@ RSpec.describe Bookmark, type: :model do
           shortening: 'https://goo.gl/AfoQuV'
         )
       end.to change { Site.count }.by(1)
+    end
+  end
+
+  context 'search bookmark' do
+    let!(:bookmark) { create(:bookmark) }
+
+    it 'find a bookmark' do
+      expect(Bookmark.search(nil, nil, 'goo').count).to eq(1)
+      expect(Bookmark.search('orbi').count).to eq(1)
+      expect(Bookmark.search(nil, 'github').count).to eq(1)
+    end
+
+    it 'does not find a bookmark' do
+      expect(Bookmark.search('it does not exist').count).to eq(1)
     end
   end
 end

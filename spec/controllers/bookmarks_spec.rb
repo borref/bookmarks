@@ -1,3 +1,5 @@
+# rubocop:disable MethodLength
+
 require 'rails_helper'
 
 RSpec.describe BookmarksController, type: :controller do
@@ -18,9 +20,9 @@ RSpec.describe BookmarksController, type: :controller do
     end
 
     it 'returns http not found status code' do
-      expect {
-        get :show, params: { id: 'not exists'}
-      }.to raise_exception(ActiveRecord::RecordNotFound)
+      expect do
+        get :show, params: { id: 'not exists' }
+      end.to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -31,9 +33,9 @@ RSpec.describe BookmarksController, type: :controller do
     end
 
     it 'returns http not found status code' do
-      expect {
-        get :edit, params: { id: 'not exists'}
-      }.to raise_exception(ActiveRecord::RecordNotFound)
+      expect do
+        get :edit, params: { id: 'not exists' }
+      end.to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -66,7 +68,7 @@ RSpec.describe BookmarksController, type: :controller do
       }
       expect do
         post :create, params: { bookmark: data }
-      end.to_not change { Bookmark.count }
+      end.to_not(change { Bookmark.count })
     end
   end
 
@@ -83,7 +85,7 @@ RSpec.describe BookmarksController, type: :controller do
     end
 
     it 'does not updates a bookmark because is invalid data' do
-      put :update, params: { id: bookmark.id, bookmark: { url: ''} }
+      put :update, params: { id: bookmark.id, bookmark: { url: '' } }
       expect(bookmark.reload.url).to_not eq('')
     end
   end

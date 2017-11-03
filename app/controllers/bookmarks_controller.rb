@@ -1,25 +1,20 @@
 # frozen_string_literal: true
 
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :set_bookmark, only: %i[show edit update destroy]
 
   # GET /bookmarks
   def index
     @bookmarks = Bookmark.all
   end
 
-  # GET /bookmarks/1
-  def show
-  end
+  def show; end
 
-  # GET /bookmarks/new
   def new
     @bookmark = Bookmark.new
   end
 
-  # GET /bookmarks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bookmarks
   def create
