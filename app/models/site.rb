@@ -4,6 +4,7 @@ class Site < ApplicationRecord
   # Validations
   validates :url, presence: true, uniqueness: true
 
-  # Relationships
-  has_many :bookmarks
+  def bookmarks
+    Bookmark.where(site_id: self.id)
+  end
 end

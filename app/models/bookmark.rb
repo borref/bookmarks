@@ -4,6 +4,7 @@ class Bookmark < ApplicationRecord
   # Validations
   validates :url, :title, presence: true, uniqueness: true
   validate :validate_url
+
   # Callbacks
   before_save :set_site
 
