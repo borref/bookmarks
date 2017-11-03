@@ -12,9 +12,9 @@ class Bookmark < ApplicationRecord
     Site.find(site_id)
   end
 
-  def self.search(title = nil, url = nil, shortening = nil)
-    query = 'title LIKE ? OR url LIKE ? OR shortening LIKE ?'
-    Bookmark.where(query, "%#{title}%", "%#{url}%", "%#{shortening}%")
+  def self.search(title = nil)
+    query = 'title LIKE ?'
+    Bookmark.where(query, "%#{title}%")
   end
 
   private

@@ -56,13 +56,11 @@ RSpec.describe Bookmark, type: :model do
     let!(:bookmark) { create(:bookmark) }
 
     it 'find a bookmark' do
-      expect(Bookmark.search(nil, nil, 'goo').count).to eq(1)
       expect(Bookmark.search('orbi').count).to eq(1)
-      expect(Bookmark.search(nil, 'github').count).to eq(1)
     end
 
     it 'does not find a bookmark' do
-      expect(Bookmark.search('it does not exist').count).to eq(1)
+      expect(Bookmark.search('it does not exist').count).to eq(0)
     end
   end
 end

@@ -3,8 +3,6 @@
 class SearchController < ApplicationController
 
   def index
-  end
-
-  def search_params
+    @bookmarks = Bookmark.search(params[:search])
   end
 end

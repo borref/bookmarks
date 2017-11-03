@@ -9,6 +9,20 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <span class="navbar-toggler-icon"></span>
+        <%= link_to 'Bookmarks', bookmarks_path, class: 'navbar-brand' %>
+        <div class="collapse navbar-collapse" >
+          <%= form_tag(search_path, method: 'get', class: 'form-inline my-2 my-lg-0') do %>
+            <p>
+              <%= text_field_tag(:search, params[:search], class: 'form-control mr-sm-2') %>
+              <%= submit_tag('Search', title: nil, class: 'btn btn-outline-success my-2 my-sm-0') %>
+            </p>
+          <% end %>
+        </div>
+      </nav>
+      <%= yield %>
+    </div>
   </body>
 </html>
