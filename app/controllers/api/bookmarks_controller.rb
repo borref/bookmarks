@@ -15,26 +15,29 @@ class Api::BookmarksController < ApplicationController
     bookmark = Bookmark.new(bookmark_params)
 
     if bookmark.save
-      sign_in bookmark
-      render(json: bookmark, status: :created)
+      render json: bookmark, status: :created
     else
-      render(json: bookmark.errors, status: :bad_request)
+      render json: bookmark.errors, status: :bad_request
     end
   end
 
   def update
-    current_user.assign_attributes(user_params)
-    if current_user.save
-      render(json: current_user)
+    @bookmark.assign_attributes(bookmark_params)
+    if @bookmark.save
+      render json: @bookmark
     else
-      render(json: current_user.errors, status: :bad_request)
+      render json: @bookmark.errors, status: :unprocessable_entity
     end
   end
 
   private
 
   def set_bookmark
-    @bookmark = Bookmark.find params[:id]
+    begin
+      @bookmark = Bookmark.find params[:id]
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { error: e.message }, status: :not_found
+    end
   end
 
   def bookmark_params
