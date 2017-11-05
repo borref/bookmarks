@@ -22,8 +22,7 @@ class Api::BookmarksController < ApplicationController
   end
 
   def update
-    @bookmark.assign_attributes(bookmark_params)
-    if @bookmark.save
+    if @bookmark.update bookmark_params
       render json: @bookmark
     else
       render json: @bookmark.errors, status: :unprocessable_entity
