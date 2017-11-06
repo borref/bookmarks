@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'bookmarks#index'
+  root to: 'home#index'
+
+  get 'legacy', to: 'bookmarks#index'
   resources :bookmarks
   get 'search', to: 'search#index'
 
