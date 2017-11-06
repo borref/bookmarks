@@ -13,11 +13,12 @@ class @BookmarksVM
 
       if @currentBookmark
         api.bookmarks(@currentBookmark.id).put(bookmark).then (response) =>
-          @bookmarksList.push(response)
-          @currentBookmark = null
+          @bookmarksList.replace(@currentBookmark, response)
+          @clearForm()
       else
         api.bookmarks.post(bookmark).then (response) =>
           @bookmarksList.push(response)
+          @clearForm()
 
   edit: (bookmark) =>
     @currentBookmark = bookmark
@@ -26,4 +27,11 @@ class @BookmarksVM
     @url(@currentBookmark.url)
     @shortening(@currentBookmark.shortening)
     @shouldBeFocused(true)
+
+  clearForm: =>
+    @title(null)
+    @url(null)
+    @shortening(null)
+    @shouldBeFocused(false)
+    @currentBookmark = null
 
