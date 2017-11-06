@@ -19,16 +19,21 @@ class Bookmark < ApplicationRecord
 
   private
 
+  def validate_url
+    errors.add(:url, 'Invalid URL') unless uri_is_valid?(url)
+  end
+
   def set_site
     url_host = URI.parse(url).host
     site = Site.find_or_create_by(url: url_host)
     self.site_id = site.id
   end
 
-  def validate_url
+  def uri_is_valid?(url)
     uri = URI.parse(url)
-    errors.add(:url, 'invalid host') if uri.host.blank?
+    return false if uri.host.nil?
+    true
   rescue URI::InvalidURIError
-    errors.add(:url, 'invalid url')
+    false
   end
 end

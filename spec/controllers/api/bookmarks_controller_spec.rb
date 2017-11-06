@@ -47,7 +47,7 @@ RSpec.describe Api::BookmarksController, type: :controller do
         shortening: 'https://goo.gl/AfoQuV'
       }
       expect do
-        post :create, params: { bookmark: data }
+        post :create, params: data
         expect(response).to have_http_status(:success)
       end
     end
@@ -58,7 +58,7 @@ RSpec.describe Api::BookmarksController, type: :controller do
         shortening: 'https://goo.gl/AfoQuV'
       }
       expect do
-        post :create, params: { bookmark: data }
+        post :create, params: data
         expect(response).to have_http_status(:bad_request)
       end
     end
@@ -66,12 +66,12 @@ RSpec.describe Api::BookmarksController, type: :controller do
 
   describe 'PUTS #update' do
     it 'updates a bookmark' do
-      put :update, params: { id: bookmark.id, bookmark: { title: 'updated bookmark title' } }
+      put :update, params: { id: bookmark.id, title: 'updated bookmark title' }
       expect(response).to have_http_status(:success)
     end
 
     it 'does not update a bookmark because is invalid data' do
-      put :update, params: { id: bookmark.id, bookmark: { url: '/not-valid/' } }
+      put :update, params: { id: bookmark.id, url: '/not-valid/' }
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
