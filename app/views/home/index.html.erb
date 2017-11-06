@@ -7,21 +7,21 @@
 </header>
 
 <section class="form">
-  <form>
+  <form data-bind="submit: save">
     <div class="row">
       <div class="four columns">
         <label for="title">Title</label>
-        <input class="u-full-width" type="text" placeholder="Awesome Website" id="title" autofocus="true">
+        <input class="u-full-width" type="text" data-bind="textInput: title" placeholder="Awesome Website" id="title" autofocus="true">
       </div>
 
       <div class="four columns">
         <label for="url">URL</label>
-        <input class="u-full-width" type="text" placeholder="http://www.aweso.me" id="url">
+        <input class="u-full-width" type="text" data-bind="textInput: url" placeholder="http://www.aweso.me" id="url">
       </div>
 
       <div class="three columns">
         <label for="shortening">Shortening</label>
-        <input class="u-full-width" type="text" placeholder="https://goo.gl" id="shortening">
+        <input class="u-full-width" type="text" data-bind="textInput: shortening" placeholder="https://goo.gl" id="shortening">
       </div>
 
       <div class="one column">
@@ -38,12 +38,18 @@
         <th>Title</th>
         <th>URL</th>
         <th>Shortening</th>
-        <th>Site</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      
+      <!-- ko foreach: bookmarksList -->
+        <tr>
+          <td data-bind="text: title"></td>
+          <td data-bind="text: url"></td>
+          <td data-bind="text: shortening.length > 0 ? shortening : 'None'"></td>
+          <td><button data-bind="click: $parent.edit" type="button">Edit</button></td>
+        </tr>
+      <!-- /ko -->
     </tbody>
   </table>
 </section>

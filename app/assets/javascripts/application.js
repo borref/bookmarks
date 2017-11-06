@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require knockout.min
+//= require rest-client.min
+//= require init
+//= require bookmarksVM
 //= require_tree .
