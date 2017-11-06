@@ -46,7 +46,7 @@
         <tr>
           <td data-bind="text: title"></td>
           <td data-bind="text: url"></td>
-          <td data-bind="text: shortening.length > 0 ? shortening : 'None'"></td>
+          <td data-bind="text: shortening && shortening.length > 0 ? shortening : 'None'"></td>
           <td><button data-bind="click: $parent.edit" type="button">Edit</button></td>
         </tr>
       <!-- /ko -->
