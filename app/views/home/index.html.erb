@@ -1,2 +1,41 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<header>
+  <h1 class="title">
+    <i class="material-icons">book</i>
+    Bookmarks
+  </h1>
+  <h2 class="subtitle">Add. Edit. List.</h2>
+</header>
+
+<section class="form">
+  <form>
+    <div class="row">
+      <div class="four columns">
+        <label for="title">Title</label>
+        <input class="u-full-width" type="text" placeholder="Awesome Website" id="title" autofocus="true">
+      </div>
+
+      <div class="five columns">
+        <label for="url">URL</label>
+        <input class="u-full-width" type="text" placeholder="http://www.aweso.me" id="url">
+      </div>
+
+      <div class="three columns">
+        <label for="shortening">Shortening</label>
+        <input class="u-full-width" type="text" placeholder="https://goo.gl" id="shortening">
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="list">
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>URL</th>
+        <th>Shortening</th>
+        <th>Site</th>
+      </tr>
+    </thead>
+  </table>
+</section>
